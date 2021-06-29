@@ -13,7 +13,7 @@ public class Contestant implements Comparable{
         setName(name);
         setScore(score);
         setNumSiblings(numSiblings);
-        setBodyTemp(bodyTemp);
+        setBodyTemp(bodyTemp); //owo philbert was here
         contestants.add(this);
     }
 
