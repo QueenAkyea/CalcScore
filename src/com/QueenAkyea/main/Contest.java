@@ -20,7 +20,7 @@ public class Contest {
         this(new ArrayList<Contestant>(0));
     }
 
-    public String getContestants() { //TODO: fix lol
+    public String getContestants() {
         return contestants.toString();
     }
 
@@ -31,7 +31,7 @@ public class Contest {
         Collections.sort(contestants);
     }
 
-    public void createContestant(String name, double score, int numSiblings, double bodyTemp) {
+    private void createContestant(String name, double score, int numSiblings, double bodyTemp) {
         Contestant c = new Contestant(name, score, numSiblings, bodyTemp);
         this.addContestant(c);
     }
@@ -68,7 +68,7 @@ public class Contest {
                             score = sc.nextDouble();
                         } catch (InputMismatchException a) {
                             System.out.println(ConsoleColors.RED_BOLD+ "⚠ NOT A VALID SCORE >:( ⚠" + ConsoleColors.RESET);
-                            System.out.println(ConsoleColors.BLUE + "*doubles must be in decimal format" + ConsoleColors.RESET);
+                            System.out.println(ConsoleColors.BLUE + "*doubles may be in decimal format" + ConsoleColors.RESET);
                         }
                     } else if (input.equals(("n"))){
                         score = 0;
@@ -102,7 +102,7 @@ public class Contest {
                     validTemp = true;
                 } catch (InputMismatchException a) {
                     System.out.println(ConsoleColors.RED_BOLD+ "⚠ NOT A VALID TEMPERATURE >:( ⚠" + ConsoleColors.RESET);
-                    System.out.println(ConsoleColors.BLUE + "*doubles must be in decimal format" + ConsoleColors.RESET);
+                    System.out.println(ConsoleColors.BLUE + "*doubles may be in decimal format" + ConsoleColors.RESET);
                 }
                 sc.nextLine();
             }
@@ -152,13 +152,5 @@ public class Contest {
     public void endRound() {
         rounds++;
 
-    } //TODO: implement
-
-    /* TODO:
-     *   implement addContestant *
-     *   implement findContestant
-     *   implement lol
-     *   implement listInfo
-     */
-
+    }
 }

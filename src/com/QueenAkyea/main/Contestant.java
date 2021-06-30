@@ -63,7 +63,7 @@ public class Contestant implements Comparable<Contestant>{
     }
 
     public static void commandList() {
-        //AAAAAAAAA TODO: implewment owo
+
     }
 
     @Override

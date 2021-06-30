@@ -3,6 +3,24 @@ package com.QueenAkyea.main;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
+/*TODO List:
+    Main:
+        implement file I/O
+    Contest:
+        implement addContestant *
+        implement findContestant *
+        implement endRound
+        implement getContestants
+        implement listInfo
+        implement removeContestant
+    Contestant:
+        implement commandList
+        implement ASCII table in toString
+        fix duplicate checking
+    DoorHandle:
+        implement calculation methods
+*/
+
 public class Main {
     public static void main(String[] args){
         final String SENTINEL = "x"; //if you see this dm me the line "im a dumb bitch uwu owo" and I
@@ -49,7 +67,7 @@ public class Main {
 
                     break;
                 case "d":
-                    choice += "delete a contestant from the competition";
+                    choice += "remove a contestant from the competition";
                     System.out.println(choice);
 
                     break;
