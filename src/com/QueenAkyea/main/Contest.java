@@ -17,7 +17,7 @@ public class Contest {
     }
 
     public Contest() {
-        this(new ArrayList<Contestant>());
+        this(new ArrayList<Contestant>(0));
     }
 
     public String contestants() { //TODO: fix lol
@@ -25,7 +25,7 @@ public class Contest {
     }
 
     //contestants is always sorted
-    public void addContestant(Contestant c) {
+    private void addContestant(Contestant c) {
         contestants.add(c);
         numContestants++;
         Collections.sort(contestants);
@@ -45,8 +45,7 @@ public class Contest {
 
         while (gun) {
             System.out.println("> What is their name?");
-            String name = sc.next();
-
+            String name = sc.nextLine();
             //contestant's starting score
             boolean validInput = false;
             while (!validInput) {
@@ -81,7 +80,9 @@ public class Contest {
                 } catch (InputMismatchException a) {
                     System.out.println(ConsoleColors.RED_BOLD+ "⚠ NOT A VALID NUMBER >:( ⚠" + ConsoleColors.RESET);
                     System.out.println(ConsoleColors.BLUE + "*this number cannot have a decimal" + ConsoleColors.RESET);
+                    validNum = false;
                 }
+                sc.nextLine();
             }
             //contestant's body temperature
             boolean validTemp = false;
@@ -94,11 +95,11 @@ public class Contest {
                     System.out.println(ConsoleColors.RED_BOLD+ "⚠ NOT A VALID TEMPERATURE >:( ⚠" + ConsoleColors.RESET);
                     System.out.println(ConsoleColors.BLUE + "*doubles must be in decimal format" + ConsoleColors.RESET);
                 }
+                sc.nextLine();
             }
             //adds new contestant to the contest
             this.createContestant(name, score, numSiblings, bodyTemp);
             System.out.println(ConsoleColors.BLUE + "Added contestant \"" + name + "\"" + ConsoleColors.RESET);
-
             //prompts user if they want to add another contestant
             validInput = false;
             while (!validInput) {

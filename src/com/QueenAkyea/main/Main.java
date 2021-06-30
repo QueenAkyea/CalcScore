@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args){
         final String SENTINEL = "x"; //if you see this dm me the line "im a dumb bitch uwu owo" and I
         Scanner sc = new Scanner(System.in);   //will give you 50 bonus points (the uwu owo is optional but worth 40)
-        Contest contest;
+        Contest contest = new Contest();
         String input;
 
         //it's sonic
@@ -45,6 +45,7 @@ public class Main {
                 case "a":
                     choice += "add a new contestant to the competition";
                     System.out.println(choice);
+                    contest.createContestant();
 
                     break;
                 case "e":

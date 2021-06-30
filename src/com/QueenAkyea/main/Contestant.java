@@ -3,7 +3,7 @@ package com.QueenAkyea.main;
 import java.util.ArrayList;
 
 public class Contestant implements Comparable{
-    public static ArrayList<Contestant> contestants;
+    public static ArrayList<Contestant> contestants = new ArrayList<>();
     private String name;
     private double score;
     private int numSiblings;
