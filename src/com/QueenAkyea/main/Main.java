@@ -1,5 +1,7 @@
 package com.QueenAkyea.main;
 
+import com.QueenAkyea.main.consoleUI.ConsoleColors;
+
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -10,13 +12,13 @@ import java.util.concurrent.TimeUnit;
         implement addContestant *
         implement findContestant *
         implement endRound
-        implement getContestants
+        implement getContestants/listContestants *
         implement listInfo
         implement removeContestant
     Contestant:
         implement commandList
         implement ASCII table in toString
-        fix duplicate checking
+        fix duplicate checking *
     DoorHandle:
         implement calculation methods
 */
@@ -84,6 +86,7 @@ public class Main {
                 case "l":
                     choice += "list the current contestants";
                     System.out.println(choice);
+                    contest.listContestants();
 
                     break;
                 case "r":

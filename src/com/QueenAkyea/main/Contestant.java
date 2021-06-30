@@ -68,11 +68,15 @@ public class Contestant implements Comparable<Contestant>{
 
     @Override
     public int compareTo(Contestant o) {
-        return this.getName().compareTo(o.getName());
+        String name1 = this.getName().toLowerCase();
+        String name2 = o.getName().toLowerCase();
+        return name1.compareTo(name2);
+        //return this.getName().compareTo(o.getName());
     }
 
     public static int lookup(ArrayList<Contestant> contestants, String name) {
         Collections.sort(contestants);
+        name = name.toLowerCase();
         return Collections.binarySearch(contestants, new Contestant(name));
     }
 

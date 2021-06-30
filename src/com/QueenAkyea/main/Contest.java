@@ -1,5 +1,6 @@
 package com.QueenAkyea.main;
 
+import com.QueenAkyea.main.consoleUI.ConsoleColors;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.InputMismatchException;
@@ -20,8 +21,46 @@ public class Contest {
         this(new ArrayList<Contestant>(0));
     }
 
-    public String getContestants() {
-        return contestants.toString();
+    public ArrayList<Contestant> getContestants() {
+        return contestants;
+    }
+
+    public void setContestants(ArrayList<Contestant> contestants) {
+        this.contestants = contestants;
+    }
+
+    public int getRounds() {
+        return rounds;
+    }
+
+    public void setRounds(int rounds) {
+        this.rounds = rounds;
+    }
+
+    public int getNumContestants() {
+        return numContestants;
+    }
+
+    public void setNumContestants(int numContestants) {
+        this.numContestants = numContestants;
+    }
+
+    public void listContestants() {
+        if (this.getNumContestants() < 1) {
+            System.out.println(ConsoleColors.RED_BOLD + "⚠ YOU DO NOT YET HAVE ANY CONTESTANTS ADDED >:( ⚠"
+                             + ConsoleColors.RESET);
+        } else {
+            String leftAlignFormat = "| %-15s | %-4.3f   | %-2d         | %-3.2f      |%n";
+
+            System.out.format("+-----------------+---------+------------+-----------+%n");
+            System.out.format("| Contestant name | Score   | # siblings | Body temp |%n");
+            System.out.format("+-----------------+---------+------------+-----------+%n");
+            for (int i = 0; i < contestants.size(); i++) {
+                Contestant c = contestants.get(i);
+                System.out.format(leftAlignFormat, c.getName(), c.getScore(), c.getNumSiblings(), c.getBodyTemp());
+            }
+            System.out.format("+-----------------+---------+------------+-----------+%n");
+        }
     }
 
     //contestants is always sorted
@@ -51,7 +90,7 @@ public class Contest {
                 System.out.println("> What is their name?");
                 name = sc.nextLine();
                 if (isDuplicateContestant(name)) {
-                    System.out.println("⚠ NAME ALREADY TAKEN >:( ⚠");
+                    System.out.println(ConsoleColors.RED_BOLD + "⚠ NAME ALREADY TAKEN >:( ⚠" + ConsoleColors.RESET);
                 } else {
                     validName = true;
                 }
