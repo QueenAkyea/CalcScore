@@ -70,4 +70,8 @@ public class Contestant implements Comparable{
         }
         throw new ClassCastException();
     }
+
+    public static void commandList() {
+        //AAAAAAAAA TODO: implewment owo
+    }
 }
