@@ -109,8 +109,6 @@ public class Contest {
 
                     } else if (input.equals("n")) {
                         gun = false;
-                    } else {
-                        throw new InputMismatchException();
                     }
                     validInput = true;
                 } catch (InputMismatchException a) {
