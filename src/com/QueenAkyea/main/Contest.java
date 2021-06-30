@@ -20,7 +20,7 @@ public class Contest {
         this(new ArrayList<Contestant>(0));
     }
 
-    public String contestants() { //TODO: fix lol
+    public String getContestants() { //TODO: fix lol
         return contestants.toString();
     }
 
@@ -39,13 +39,23 @@ public class Contest {
     public void createContestant() {
         Scanner sc = new Scanner(System.in);
         boolean gun = true;
+        String name = "";
         double score = 0.0;
         int numSiblings = 0;
         double bodyTemp = 0.0;
 
         while (gun) {
-            System.out.println("> What is their name?");
-            String name = sc.nextLine();
+            //contestant's name
+            boolean validName = false;
+            while (!validName) {
+                System.out.println("> What is their name?");
+                name = sc.nextLine();
+                if (isDuplicateContestant(name)) {
+                    System.out.println("⚠ NAME ALREADY TAKEN >:( ⚠");
+                } else {
+                    validName = true;
+                }
+            }
             //contestant's starting score
             boolean validInput = false;
             while (!validInput) {
@@ -80,7 +90,6 @@ public class Contest {
                 } catch (InputMismatchException a) {
                     System.out.println(ConsoleColors.RED_BOLD+ "⚠ NOT A VALID NUMBER >:( ⚠" + ConsoleColors.RESET);
                     System.out.println(ConsoleColors.BLUE + "*this number cannot have a decimal" + ConsoleColors.RESET);
-                    validNum = false;
                 }
                 sc.nextLine();
             }
@@ -118,6 +127,25 @@ public class Contest {
                     System.out.println(ConsoleColors.RED_BOLD+ "⚠ NOT A VALID RESPONSE >:( ⚠" + ConsoleColors.RESET);
                 }
             }
+        }
+    }
+
+    public boolean isDuplicateContestant(String name) {
+        int ind = Contestant.lookup(contestants, name);
+        if (ind >= 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public void searchContestant(String name) {
+        int ind = Contestant.lookup(contestants, name);
+        if (ind < 0) {
+            System.out.println("> Contestant does not exist");
+        } else {
+            Contestant c = contestants.get(ind);
+            System.out.println("> Found contestant " + ConsoleColors.BLUE + c.getName() + ConsoleColors.RESET);
+
         }
     }
 

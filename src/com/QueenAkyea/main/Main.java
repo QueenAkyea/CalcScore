@@ -48,6 +48,11 @@ public class Main {
                     contest.createContestant();
 
                     break;
+                case "d":
+                    choice += "delete a contestant from the competition";
+                    System.out.println(choice);
+
+                    break;
                 case "e":
                     choice += "end a round";
                     System.out.println(choice);

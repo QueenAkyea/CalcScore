@@ -1,9 +1,10 @@
 package com.QueenAkyea.main;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Locale;
 
-public class Contestant implements Comparable{
-    public static ArrayList<Contestant> contestants = new ArrayList<>();
+public class Contestant implements Comparable<Contestant>{
     private String name;
     private double score;
     private int numSiblings;
@@ -14,7 +15,6 @@ public class Contestant implements Comparable{
         setScore(score);
         setNumSiblings(numSiblings);
         setBodyTemp(bodyTemp); //owo philbert was here
-        contestants.add(this);
     }
 
     public Contestant(String name, int numSiblings, double bodyTemp) {
@@ -62,16 +62,18 @@ public class Contestant implements Comparable{
         return "Contestant " + this.name;
     }
 
-    @Override
-    public int compareTo(Object o) {
-        Object other = o;
-        if (other instanceof Contestant) {
-            return this.getName().compareTo(((Contestant) other).getName());
-        }
-        throw new ClassCastException();
-    }
-
     public static void commandList() {
         //AAAAAAAAA TODO: implewment owo
     }
+
+    @Override
+    public int compareTo(Contestant o) {
+        return this.getName().compareTo(o.getName());
+    }
+
+    public static int lookup(ArrayList<Contestant> contestants, String name) {
+        Collections.sort(contestants);
+        return Collections.binarySearch(contestants, new Contestant(name));
+    }
+
 }
