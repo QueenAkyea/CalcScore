@@ -2,11 +2,13 @@ package com.QueenAkyea.main;
 
 import com.QueenAkyea.consoleUI.ConsoleColors;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Locale;
 
-public class Contestant implements Comparable<Contestant>{
+public class Contestant{
     private String name;
     private double score;
     private int numSiblings;
@@ -73,18 +75,45 @@ public class Contestant implements Comparable<Contestant>{
 
     }
 
+//comparator for name
+static class SortByName implements Comparator<Contestant> {
     @Override
-    public int compareTo(Contestant o) {
-        String name1 = this.getName().toLowerCase();
-        String name2 = o.getName().toLowerCase();
+    public int compare(Contestant o1, Contestant o2) {
+        String name1 = o1.getName().toLowerCase();
+        String name2 = o2.getName().toLowerCase();
         return name1.compareTo(name2);
-        //return this.getName().compareTo(o.getName());
+    }
+}
+
+//comparator for score
+static class SortByScore implements Comparator<Contestant> {
+    @Override
+    public int compare(Contestant o1, Contestant o2) {
+        double score1 = o1.getScore();
+        double score2 = o2.getScore();
+        if (score1 < score2) {
+            return -1;
+        } else if (score2 > score1) {
+            return 1;
+        }
+        return 0;
+    }
+}
+
+    //sort methods
+    public static void sortByName(ArrayList<Contestant> contestants) {
+        Collections.sort(contestants, new SortByName());
     }
 
+    public static void sortByScore(ArrayList<Contestant> contestants) {
+        Collections.sort(contestants, new SortByScore());
+    }
+
+    //contestant lookup method
     public static int lookup(ArrayList<Contestant> contestants, String name) {
-        Collections.sort(contestants);
+        sortByName(contestants);
         name = name.toLowerCase();
-        return Collections.binarySearch(contestants, new Contestant(name));
+        return Collections.binarySearch(contestants, new Contestant(name), new SortByName());
     }
 
 }

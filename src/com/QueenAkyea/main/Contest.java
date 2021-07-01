@@ -7,14 +7,24 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Contest {
+    private String name;
     private ArrayList<Contestant> contestants;
     private int rounds;
     private int numContestants;
 
-    public Contest() {
-        contestants = new ArrayList<Contestant>(0);
-        rounds = 0;
-        numContestants = contestants.size();
+    public Contest(String name) {
+        if (name.equals(" ") || name.length() < 1) {
+            this.name = "Competiton";
+        } else {
+            this.name = name + " Competition";
+        }
+        this.contestants = new ArrayList<Contestant>(0);
+        this.rounds = 0;
+        this.numContestants = 0;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public ArrayList<Contestant> getContestants() {
@@ -33,6 +43,25 @@ public class Contest {
         return numContestants;
     }
 
+    public void listInfo() {
+        //maybe i'll add ascii art. maybe i wont
+        System.out.println(getName());
+        if (this.getNumContestants() < 1) {
+            System.out.println("\n\n\n");
+            System.out.println("you do not have any contestants yet.");
+            System.out.println("\n\n\n");
+        } else {
+            System.out.println(ConsoleColors.BLUE + getNumContestants() + " contestants:" + ConsoleColors.RESET);
+            listContestants();
+            System.out.println("---------------------------------");
+            System.out.println(ConsoleColors.BLUE + "Rounds so far: " + getRounds() + ConsoleColors.RESET);
+            listStandings();
+            System.out.println("---------------------------------");
+        }
+
+    }
+
+    //PRECONDITION: numContestants > 0
     public void listContestants() {
         if (this.getNumContestants() < 1) {
             System.out.println(ConsoleColors.RED_BOLD + "⚠ YOU DO NOT YET HAVE ANY CONTESTANTS ADDED >:( ⚠"
@@ -68,12 +97,28 @@ public class Contest {
         }
     }
 
+    //PRECONDITION: numContestants > 0
+    public void listStandings() {
+        if (this.getNumContestants() < 1) {
+            System.out.println(ConsoleColors.RED_BOLD + "⚠ YOU DO NOT YET HAVE ANY CONTESTANTS ADDED >:( ⚠"
+                    + ConsoleColors.RESET);
+        } else {
+            Contestant.sortByScore(contestants);
+            int i = 1;
+            for (Contestant c: contestants) {
+                System.out.println(i + ". " + c.getName() + " with a score of " + c.getScore() + " points.");
+                i++;
+            }
+            Contestant.sortByName(contestants);
+        }
+    }
+
     //contestants is always sorted
     private void addContestant(String name, double score, int numSiblings, double bodyTemp) {
         Contestant c = new Contestant(name, score, numSiblings, bodyTemp);
         contestants.add(c);
         numContestants++;
-        Collections.sort(contestants);
+        Contestant.sortByName(contestants);
     }
 
     public void createContestant() {
@@ -170,22 +215,29 @@ public class Contest {
         }
     }
 
+    //PRECONDITION: numContestants > 0
     public void deleteContestant() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("> Enter the name of the contestant you want to remove");
-        String name = sc.nextLine();
-
-        int ind = Contestant.lookup(contestants, name);
-        if (ind < 0) {
-            System.out.println(ConsoleColors.RED_BOLD + "⚠ Contestant does not exist >:( ⚠" + ConsoleColors.RESET);
+        if (this.getNumContestants() < 1) {
+            System.out.println(ConsoleColors.RED_BOLD + "⚠ YOU DO NOT YET HAVE ANY CONTESTANTS ADDED >:( ⚠"
+                    + ConsoleColors.RESET);
         } else {
-            name = contestants.get(ind).getName();
-            contestants.remove(ind);
-            System.out.println(ConsoleColors.BLUE+ "> Removed contestant " + name + ConsoleColors.RESET);
+            Scanner sc = new Scanner(System.in);
+            System.out.println("> Enter the name of the contestant you want to remove");
+            String name = sc.nextLine();
+            int ind = Contestant.lookup(contestants, name);
+
+            if (ind < 0) {
+                System.out.println(ConsoleColors.RED_BOLD + "⚠ Contestant does not exist >:( ⚠" + ConsoleColors.RESET);
+            } else {
+                name = contestants.get(ind).getName();
+                contestants.remove(ind);
+                numContestants--;
+                System.out.println(ConsoleColors.BLUE+ "> Removed contestant " + name + ConsoleColors.RESET);
+            }
         }
     }
 
-    public boolean isDuplicateContestant(String name) {
+    private boolean isDuplicateContestant(String name) {
         int ind = Contestant.lookup(contestants, name);
         if (ind >= 0) {
             return true;
@@ -193,17 +245,23 @@ public class Contest {
         return false;
     }
 
+    //PRECONDITION: numContestants > 0
     public void findContestant() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("> Enter the name of the contestant you are looking for");
-        String name = sc.nextLine();
-
-        int ind = Contestant.lookup(contestants, name);
-        if (ind < 0) {
-            System.out.println(ConsoleColors.RED_BOLD + "⚠ Contestant does not exist >:( ⚠" + ConsoleColors.RESET);
+        if (this.getNumContestants() < 1) {
+            System.out.println(ConsoleColors.RED_BOLD + "⚠ YOU DO NOT YET HAVE ANY CONTESTANTS ADDED >:( ⚠"
+                    + ConsoleColors.RESET);
         } else {
-            Contestant c = contestants.get(ind);
-            System.out.println(c.toString());
+            Scanner sc = new Scanner(System.in);
+            System.out.println("> Enter the name of the contestant you are looking for");
+            String name = sc.nextLine();
+
+            int ind = Contestant.lookup(contestants, name);
+            if (ind < 0) {
+                System.out.println(ConsoleColors.RED_BOLD + "⚠ Contestant does not exist >:( ⚠" + ConsoleColors.RESET);
+            } else {
+                Contestant c = contestants.get(ind);
+                System.out.println(c.toString());
+            }
         }
     }
 
