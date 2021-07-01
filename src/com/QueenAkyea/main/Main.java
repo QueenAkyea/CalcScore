@@ -1,6 +1,7 @@
 package com.QueenAkyea.main;
 
 import com.QueenAkyea.consoleUI.ConsoleColors;
+import com.QueenAkyea.misc.KaoGen;
 
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -133,6 +134,9 @@ public class Main {
                 " |      |     | |           |  |  | |_____| |_____|    |         |_____|      | \\  | |______ |_____/ |     \\\n" +
                 " |_____ |_____| |_____      |__|__| |     | |     |    |         |     |      |  \\_| |______ |    \\_ |_____/\n" +
                 "                                                                                                            \n"); //phillip be quiet
+
+        System.out.println(ConsoleColors.BLUE);
+        KaoGen.generateN(10);
 
         try
         {
