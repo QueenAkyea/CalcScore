@@ -1,5 +1,7 @@
 package com.QueenAkyea.main;
 
+import com.QueenAkyea.consoleUI.ConsoleColors;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Locale;
@@ -59,7 +61,12 @@ public class Contestant implements Comparable<Contestant>{
 
     @Override
     public String toString() {
-        return "Contestant " + this.name;
+        String str = ConsoleColors.CYAN_UNDERLINED + "Contestant " + this.getName() + ": " + ConsoleColors.RESET + "\n" +
+                ConsoleColors.WHITE_BRIGHT + "Score: " + this.getScore() + " points\n" +
+                "Siblings: " + this.getNumSiblings() + "\n" +
+                "Body Temperature: " + this.getBodyTemp() + " degrees Fahrenheit"
+                + ConsoleColors.RESET + "\n";
+        return str;
     }
 
     public static void commandList() {

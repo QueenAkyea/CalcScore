@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
         implement endRound
         implement getContestants/listContestants *
         implement listInfo
-        implement removeContestant
+        implement deleteContestant *
     Contestant:
         implement commandList
         implement ASCII table in toString
@@ -59,7 +59,7 @@ public class Main {
 
         do {
             System.out.println("> What do you want to do? (aaa for help) ");
-            input = sc.nextLine();
+            input = sc.nextLine().toLowerCase();
             String choice = "> You choose to: ";
             switch (input) {
                 case "a":
@@ -71,6 +71,7 @@ public class Main {
                 case "d":
                     choice += "remove a contestant from the competition";
                     System.out.println(choice);
+                    contest.deleteContestant();
 
                     break;
                 case "e":
@@ -81,6 +82,7 @@ public class Main {
                 case "f":
                     choice += "find a contestant";
                     System.out.println(choice);
+                    contest.findContestant();
 
                     break;
                 case "l":
