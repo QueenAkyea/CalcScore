@@ -14,7 +14,7 @@ public class Contest {
 
     public Contest(String name) {
         if (name.equals(" ") || name.length() < 1) {
-            this.name = "Competiton";
+            this.name = "Competition";
         } else {
             this.name = name + " Competition";
         }
