@@ -61,7 +61,7 @@ public class Main {
 
         do {
             String help = "aaa";
-            System.out.println("> What do you want to do? ("+ help + "f or help) ");
+            System.out.println("> What do you want to do? ("+ help + " for help) ");
             input = sc.nextLine().toLowerCase();
             String choice = "> You choose to: ";
             switch (input) {
