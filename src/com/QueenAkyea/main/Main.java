@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
         implement deleteContestant *
     Contestant:
         implement commandList
-        implement ASCII table in toString
+        implement ASCII Table in toString
         fix duplicate checking *
     DoorHandle:
         implement calculation methods
