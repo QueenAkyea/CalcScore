@@ -24,8 +24,10 @@ import java.util.concurrent.TimeUnit;
 */
 
 public class Main {
+    public static final String SENTINEL = "x";
+
     public static void main(String[] args){
-        final String SENTINEL = "x"; //if you see this dm me the line "im a dumb bitch uwu owo" and I
+         //if you see this dm me the line "im a dumb bitch uwu owo" and I
         Scanner sc = new Scanner(System.in);   //will give you 50 bonus points (the uwu owo is optional but worth 40)
         Contest contest = new Contest();
         String input;
@@ -58,10 +60,17 @@ public class Main {
         //System.out.println("");
 
         do {
-            System.out.println("> What do you want to do? (aaa for help) ");
+            String help = "aaa";
+            System.out.println("> What do you want to do? ("+ help + "f or help) ");
             input = sc.nextLine().toLowerCase();
             String choice = "> You choose to: ";
             switch (input) {
+                case "aaa":
+                    choice = ">List of commands: ";
+                    System.out.println(choice);
+                    commandList();
+
+                    break;
                 case "a":
                     choice += "add a new contestant to the competition";
                     System.out.println(choice);
@@ -127,6 +136,19 @@ public class Main {
         {
             Thread.currentThread().interrupt();
         }
+
+    }
+
+    public static void commandList() {
+        System.out.println("a - add new contestant");
+        System.out.println("d - delete a contestant");
+        System.out.println("e - end round");
+        System.out.println("f - find a contestant");
+        System.out.println("l - list each contestant");
+        System.out.println("r - list the rankings");
+        System.out.println("s - manually change someone's score");
+        System.out.println(SENTINEL+ " - exit");
+        System.out.println("fin - finish the competition!");
 
     }
 }
