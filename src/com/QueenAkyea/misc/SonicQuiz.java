@@ -1,4 +1,4 @@
 package com.QueenAkyea.misc;
 
-public class SonicQuiz {
+public class SonicQuiz extends Quiz{
 }
