@@ -1,4 +1,4 @@
-package com.QueenAkyea.main.consoleUI;
+package com.QueenAkyea.consoleUI;
 
 public class ConsoleColors {
     // Reset

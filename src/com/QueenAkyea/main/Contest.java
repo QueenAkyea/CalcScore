@@ -1,6 +1,6 @@
 package com.QueenAkyea.main;
 
-import com.QueenAkyea.main.consoleUI.ConsoleColors;
+import com.QueenAkyea.consoleUI.ConsoleColors;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.InputMismatchException;
