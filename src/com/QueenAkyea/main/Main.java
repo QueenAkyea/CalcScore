@@ -7,6 +7,7 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 /*TODO List:
+ * implement a command line argument parser
     Main:
         implement file I/O
         lol what if you could change the text colors woOOOOooOOooooOOoo
